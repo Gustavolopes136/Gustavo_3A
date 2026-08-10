@@ -1,0 +1,385 @@
+// exercicios js e html parte 3
+//1
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Times do Campeonato Brasileiro</title>
+</head>
+<body>
+
+    <h1>Cadastro de Times</h1>
+
+    <form id="formulario">
+        <input type="text" id="time" placeholder="Digite o nome do time">
+        <button type="submit">Cadastrar</button>
+    </form>
+
+    <h2>Times cadastrados:</h2>
+    <ul id="listaTimes"></ul>
+
+    <script>
+        let times = [];
+
+        document.getElementById("formulario").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let time = document.getElementById("time").value;
+
+            if (time !== "" && times.length < 10) {
+                times.push(time);
+
+                document.getElementById("time").value = "";
+
+                if (times.length === 10) {
+                    document.querySelector("button").disabled = true;
+                }
+            }
+        });
+
+        document.getElementById("formulario").addEventListener("submit", function() {
+            let lista = document.getElementById("listaTimes");
+
+            lista.innerHTML = "";
+
+            for (let i = 0; i < times.length; i++) {
+                let item = document.createElement("li");
+                item.textContent = times[i];
+                lista.appendChild(item);
+            }
+        });
+    </script>
+
+</body>
+</html>
+
+//2
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Animais que eu gosto</h1>
+
+<ul id="animais"></ul>
+
+<script>
+    let animais = [
+        "Tiranossauro Rex",
+        "Triceratops",
+        "Velociraptor",
+        "Leão",
+        "Lobo"
+    ];
+
+    let lista = document.getElementById("animais");
+
+    for (let i = 0; i < animais.length; i++) {
+        let item = document.createElement("li");
+
+        item.textContent = animais[i];
+
+        lista.appendChild(item);
+    }
+</script>
+
+</body>
+</html>
+
+//3
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Números Ímpares</h1>
+
+<div id="resultado"></div>
+
+<script>
+    let impares = [];
+
+    for (let i = 0; i <= 200; i++) {
+        if (i % 2 !== 0) {
+            impares.push(i);
+        }
+    }
+
+    let resultado = document.getElementById("resultado");
+
+    for (let i = 0; i < impares.length; i++) {
+        resultado.innerHTML += impares[i] + "<br>";
+    }
+</script>
+
+</body>
+</html>
+
+//4
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Carros</title>
+</head>
+<body>
+
+<h1>Modelos de Carros</h1>
+
+<table border="1" id="tabela">
+</table>
+
+<script>
+
+    let carros = [
+        { marca: "Toyota", modelo: "Corolla" },
+        { marca: "Toyota", modelo: "Yaris" },
+        { marca: "Toyota", modelo: "Hilux" },
+
+        { marca: "Honda", modelo: "Civic" },
+        { marca: "Honda", modelo: "City" },
+        { marca: "Honda", modelo: "HR-V" },
+
+        { marca: "Volkswagen", modelo: "Golf" },
+        { marca: "Volkswagen", modelo: "Polo" },
+        { marca: "Volkswagen", modelo: "T-Cross" },
+
+        { marca: "Chevrolet", modelo: "Onix" },
+        { marca: "Chevrolet", modelo: "Tracker" },
+        { marca: "Chevrolet", modelo: "S10" }
+    ];
+
+    let tabela = document.getElementById("tabela");
+
+    let cabecalho = document.createElement("tr");
+
+    let thMarca = document.createElement("th");
+    thMarca.textContent = "Marca";
+
+    let thModelo = document.createElement("th");
+    thModelo.textContent = "Modelo";
+
+    cabecalho.appendChild(thMarca);
+    cabecalho.appendChild(thModelo);
+
+    tabela.appendChild(cabecalho);
+
+    for (let i = 0; i < carros.length; i++) {
+
+        let linha = document.createElement("tr");
+
+        let colunaMarca = document.createElement("td");
+        colunaMarca.textContent = carros[i].marca;
+
+        let colunaModelo = document.createElement("td");
+        colunaModelo.textContent = carros[i].modelo;
+
+        linha.appendChild(colunaMarca);
+        linha.appendChild(colunaModelo);
+
+        tabela.appendChild(linha);
+
+        // Depois de cada grupo de 3 carros,
+        // cria uma linha com HR para separar as marcas.
+        if ((i + 1) % 3 === 0 && i !== carros.length - 1) {
+
+            let linhaSeparadora = document.createElement("tr");
+
+            let colunaSeparadora = document.createElement("td");
+
+            colunaSeparadora.colSpan = 2;
+
+            let hr = document.createElement("hr");
+
+            colunaSeparadora.appendChild(hr);
+            linhaSeparadora.appendChild(colunaSeparadora);
+
+            tabela.appendChild(linhaSeparadora);
+        }
+    }
+
+</script>
+
+</body>
+</html>
+//5
+
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Notas do aluno</h1>
+
+<div id="resultado"></div>
+
+<script>
+
+    let notas = [8, 7, 9, 10];
+
+    let soma = 0;
+
+    for (let i = 0; i < notas.length; i++) {
+        soma += notas[i];
+    }
+
+    let media = soma / notas.length;
+
+    let resultado = document.getElementById("resultado");
+
+    resultado.innerHTML = "Notas: " + notas.join(", ") + "<br>";
+    resultado.innerHTML += "Média: " + media.toFixed(2);
+
+</script>
+
+</body>
+</html>
+
+//6
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Compras</title>
+</head>
+<body>
+
+<h1>Lista de Compras</h1>
+
+<table border="1">
+    <tr>
+        <th>Limpeza</th>
+        <th>Alimentação</th>
+    </tr>
+
+    <tbody id="lista"></tbody>
+</table>
+
+<script>
+
+    let compras = {
+        limpeza: [
+            "Sabão",
+            "Detergente",
+            "Desinfetante",
+            "Esponja",
+            "Água sanitária"
+        ],
+
+        alimentacao: [
+            "Arroz",
+            "Feijão",
+            "Macarrão",
+            "Leite",
+            "Pão"
+        ]
+    };
+
+    let tabela = document.getElementById("lista");
+
+    for (let i = 0; i < 5; i++) {
+
+        let linha = document.createElement("tr");
+
+        let limpeza = document.createElement("td");
+        limpeza.textContent = compras.limpeza[i];
+
+        let alimentacao = document.createElement("td");
+        alimentacao.textContent = compras.alimentacao[i];
+
+        linha.appendChild(limpeza);
+        linha.appendChild(alimentacao);
+
+        tabela.appendChild(linha);
+    }
+
+</script>
+
+</body>
+</html>
+
+//7
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Números em ordem decrescente</h1>
+
+<div id="resultado"></div>
+
+<script>
+
+    let numeros = [10, 20, 30, 40];
+
+    let resultado = document.getElementById("resultado");
+
+    for (let i = numeros.length - 1; i >= 0; i--) {
+        resultado.innerHTML += numeros[i] + "<br>";
+    }
+
+</script>
+
+</body>
+</html>
+
+//8
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Números sem repetição</h1>
+
+<div id="resultado"></div>
+
+<script>
+
+    let numeros = [10, 20, 30, 20, 40, 50, 30, 60, 70, 80];
+
+    let semRepeticao = [];
+
+    for (let i = 0; i < numeros.length; i++) {
+
+        if (!semRepeticao.includes(numeros[i])) {
+            semRepeticao.push(numeros[i]);
+        }
+    }
+
+    document.getElementById("resultado").textContent =
+        semRepeticao.join(", ");
+
+</script>
+
+</body>
+</html>
+
+//9
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Números iguais nos dois arrays</h1>
+
+<div id="resultado"></div>
+
+<script>
+
+    let array1 = [1, 5, 10, 15, 20, 25, 30, 35, 40, 45];
+
+    let array2 = [2, 4, 10, 15, 22, 27, 32, 38, 44, 50];
+
+    let iguais = [];
+
+    for (let i = 0; i < array1.length; i++) {
+
+        if (array2.includes(array1[i])) {
+            iguais.push(array1[i]);
+        }
+    }
+
+    document.getElementById("resultado").textContent =
+        "Números encontrados nos dois arrays: " + iguais.join(", ");
+
+</script>
+
+</body>
+</html>
