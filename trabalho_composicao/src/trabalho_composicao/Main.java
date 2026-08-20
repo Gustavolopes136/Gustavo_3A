@@ -1,0 +1,10 @@
+package trabalho_composicao;
+
+public class Main {
+
+	public static void main(String[] args) {
+		System.out.println("olá mundo");
+
+	}
+
+}
